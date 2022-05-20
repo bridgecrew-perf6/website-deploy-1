@@ -2,6 +2,7 @@
 import { h } from "https://esm.sh/preact@10.5.15";
 import {marked} from "https://esm.sh/marked"
 import { renderToString } from "https://esm.sh/preact-render-to-string@5.1.19?deps=preact@10.5.15";
+import Home from "./index.tsx"
 const s = `
 h1 {
   border: 2px solid red;
@@ -55,17 +56,18 @@ const App = ({props}) => {
         <meta property="twitter:url" content={url} />
       </head>
       <body>
-        <style>
+        <Home />
+      </body>
+    </html>
+  )
+}
+{/* <style>
           {s}
         </style>
         <p>hello</p>
         <p>{props.module}</p>
         <div dangerouslySetInnerHTML={{__html: marked(markdownFile)}}></div>
-        {marked(markdownFile)}
-      </body>
-    </html>
-  )
-}
+        {marked(markdownFile)} */}
 
 class Res extends Drash.Resource {
   paths = ["/.*"]

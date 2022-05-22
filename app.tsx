@@ -1,7 +1,7 @@
 /** @jsx h */
-import { h } from "https://esm.sh/preact@10.5.15";
+import { h } from "https://esm.sh/preact";
 import {marked} from "https://esm.sh/marked"
-import { renderToString } from "https://esm.sh/preact-render-to-string@5.1.19?deps=preact@10.5.15";
+import { renderToString } from "https://esm.sh/preact-render-to-string?deps=preact";
 import Home from "./index.tsx"
 const s = `
 h1 {
@@ -24,7 +24,8 @@ const App = ({props}) => {
   const title = "Drash Land"
   const moduleAndVersion = `${module}${ version ? " " + version : ""}`
   const url = `https://drash.land/${module}`
-  const isIndex = module !== undefined
+  const isIndex = module === undefined
+  console.log(isIndex)
   return (
     <html>
       <head>
@@ -56,7 +57,8 @@ const App = ({props}) => {
         <meta property="twitter:url" content={url} />
       </head>
       <body>
-        <Home />
+          <Home />
+        
       </body>
     </html>
   )
@@ -88,9 +90,10 @@ class Res extends Drash.Resource {
 
 const server = new Drash.Server({
   port: 1447,
-  hostname: "",
+  hostname: Deno.env.get('APP_ENV') === 'production' ? '' : 'localhost',
   protocol: "http",
   resources: [Res]
 })
 
 server.run()
+console.log(server.address)

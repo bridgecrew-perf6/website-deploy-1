@@ -1,7 +1,6 @@
-import { useEffect, useState } from "https://esm.sh/react";
+import { useEffect, useState } from "https://esm.sh/preact/hooks";
 import styled from "https://esm.sh/styled-components";
 import { MarkGithub } from "https://esm.sh/@styled-icons/octicons";
-import Switch from "https://esm.sh/react-switch";
 import { Moon, Sun } from "https://esm.sh/@styled-icons/bootstrap";
 import { useRouter } from "https://esm.sh/next/router";
 import { getGitHubUrl } from "../services/config_service.ts";
@@ -67,9 +66,9 @@ const ThemeSwitchContainer = styled.label`
   display: flex;
 `;
 
-const ThemeSwitch = styled(Switch)`
-  margin-right: 1rem;
-`;
+// const ThemeSwitch = styled(Switch)`
+//   margin-right: 1rem;
+// `;
 
 const ThemeSwitchIconContainer = styled.div`
   align-items: center;
@@ -116,7 +115,7 @@ export default function TopBar(props) {
         {router.asPath !== "/" && (
           <ThemeSwitchContainer>
             <span style={{ marginRight: ".25rem" }}>Mode</span>
-            <ThemeSwitch
+            <input type="checkbox"
               onChange={state.toggleDarkMode}
               checked={state.darkMode}
               onColor="#4e5767"
